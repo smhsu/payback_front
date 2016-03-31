@@ -66,7 +66,7 @@
 						</form>
 				</div>
 				<div class="modal-footer">
-						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal">
+						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal" id="add_friend_btn">
 						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
@@ -123,6 +123,31 @@
 			</table>
 		</div>
 	</div> <!--End container-->
+	
+	<script>
+		// ADD FRIEND
+		document.getElementById("add_friend_btn").addEventListener("click", addFriendAjax, false);
+		
+		function addFriendAjax() {
+            var friendEmail = document.getElementById("friend_email").value; // Get friend's email from form
+			var dataString = "friend_email=" + encodeURIComponent(friendEmail);
+         
+            var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+            xmlHttp.open("POST", "add_friend.php", true); // Starting a POST request
+            xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlHttp.addEventListener("load", function(event){
+                var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
+                if (jsonData.success) {
+					alert("Friend added!");
+                } else {
+                    alert("Friend not added. " + jsonData.message);
+                }
+				this.removeEventListener("load", this);
+            }, false); // Bind the callback to the load event
+            xmlHttp.send(dataString); // Send the data
+        }
+		
+	</script>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
