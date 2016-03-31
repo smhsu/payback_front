@@ -125,12 +125,17 @@
 	</div> <!--End container-->
 	
 	<script>
+		// Get token from session data
+		<?php
+			echo "var token = \"" . $_SESSION['token'] . "\";";
+		?>
+		
 		// ADD FRIEND
 		document.getElementById("add_friend_btn").addEventListener("click", addFriendAjax, false);
 		
 		function addFriendAjax() {
             var friendEmail = document.getElementById("friend_email").value; // Get friend's email from form
-			var dataString = "friend_email=" + encodeURIComponent(friendEmail);
+			var dataString = "friend_email=" + encodeURIComponent(friendEmail) + "&token=" + encodeURIComponent(token);
          
             var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
             xmlHttp.open("POST", "add_friend.php", true); // Starting a POST request
