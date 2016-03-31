@@ -36,15 +36,15 @@
 
 			<div class='collapse navbar-collapse' id='nav-collapse'>
 				<ul class='nav navbar-nav navbar-right'>
-				<?php
-					if (isset($_SESSION['user_id'])) {
-						echo "<li><a href='logout_process.php' class='active'>Log out</a></li>";
-					}
-					else {
-						echo "<li><a href='login.php' class='active'>Log in</a></li>";
-						echo "<li><a href='register.html' class='active'>Register</a></li>";
-					}
-				?>
+					<?php
+						if (isset($_SESSION['user_id'])) {
+							echo "<li><a href='logout_process.php' class='active'>Log out</a></li>";
+						}
+						else {
+							echo "<li><a href='login.php' class='active'>Log in</a></li>";
+							echo "<li><a href='register.html' class='active'>Register</a></li>";
+						}
+					?>
 					<li><a href='#' class='active'>Home</a></li>
 					<li><a href='#'>About</a></li>
 				</ul>
@@ -127,16 +127,19 @@
 	<script>
 		// Get token from session data
 		<?php
-			echo "var token = \"" . $_SESSION['token'] . "\";";
+			if (isset($_SESSION['user_id'])) {
+				echo "var token = \"" . $_SESSION['token'] . "\";";
+				echo "getFriends()";
+			}
+			
 		?>
 		
 		// ADD FRIEND
 		document.getElementById("add_friend_btn").addEventListener("click", addFriendAjax, false);
-		
 		function addFriendAjax() {
             var friendEmail = document.getElementById("friend_email").value; // Get friend's email from form
 			var dataString = "friend_email=" + encodeURIComponent(friendEmail) + "&token=" + encodeURIComponent(token);
-         
+        
             var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
             xmlHttp.open("POST", "add_friend.php", true); // Starting a POST request
             xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -144,6 +147,7 @@
                 var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
                 if (jsonData.success) {
 					alert("Friend added!");
+					getFriends();
                 } else {
                     alert("Friend not added. " + jsonData.message);
                 }
@@ -151,6 +155,29 @@
             }, false); // Bind the callback to the load event
             xmlHttp.send(dataString); // Send the data
         }
+		
+		// GET FRIENDS (populates dropdown)
+		function getFriends() {
+			var dataString = "token=" + encodeURIComponent(token);
+            var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+            xmlHttp.open("POST", "get_friends.php", true); // Starting a POST request
+            xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlHttp.addEventListener("load", function(event){
+                var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
+                if (jsonData.success) {
+					// FIXME Populate friend dropdown with reponses
+					for (i = 0; i < jsonData.count; i++) {
+						console.log("Friend: " + jsonData[i].friend_username);
+					}
+					
+                } else {
+                    alert("Error: " + jsonData.message);
+                }
+				this.removeEventListener("load", this);
+            }, false); // Bind the callback to the load event
+            xmlHttp.send(dataString); // Send the data
+        }
+
 		
 	</script>
 

@@ -1,0 +1,1 @@
+- Fill in getFriends() function to delete any elements already in the select dropdown and add new options based on the JSON response 
