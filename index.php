@@ -12,6 +12,13 @@
 	<!-- Bootstrap -->
 	<link href='css/bootstrap.min.css' rel='stylesheet'>
 
+	<!--JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+	<!-- JQuery UI -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -80,9 +87,18 @@
 						<a class="close" data-dismiss="modal">×</a>
 						<h3>Add expense</h3>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" class="ui-widget" class="ui-front" id="add-expense-modal-body">
 						<form>
-								<input type="text" class="input-xlarge"><br>
+								<label for="new_expense_name">Expense: </label>
+								<input type="text" class="input-xlarge" id="new_expense_name" name="expense_name"><br>
+								<label for="new_buyer_name">Buyer: </label>
+								<input id="new_buyer_name" name="buyer_name" size="50"/></br>
+								<label for="new_total_amount">Amount: </label>
+								<input type="number" id="new_total_amount" name="total_amount"/></br>
+								<label for="datepicker">Date: </label>
+								<input type="text" id="datepicker"/></br>
+								<label for="new_owers">Owers: </label>
+								<input id="new_owers" name="ower_names" size="50"/></br>
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -100,7 +116,7 @@
 			<option value='friend2'>Friend 2</option>
 		</select>
 
-		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary">Add friend</a>
+		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
 		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new transaction</a>
 
 		<div class='table-responsive'>
@@ -124,21 +140,31 @@
 		</div>
 	</div> <!--End container-->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src='js/bootstrap.min.js'></script>
-	<script src='js/network.js'></script>
 	<script>
 		// Get token from session data
+		var token;
+		var user_id;
+		var username;
 		<?php
 			if (isset($_SESSION['user_id'])) {
-				echo "var token = \"" . $_SESSION['token'] . "\";";
-				echo "getFriends()";
+				echo "token = \"" . $_SESSION['token'] . "\";";
+				echo "user_id = \"" . $_SESSION['user_id'] . "\";";
+				echo "username = \"" . $_SESSION['username'] . "\";";
 			}
-
 		?>
 	</script>
-	
+	<script src='js/bootstrap.min.js'></script>
+	<script src="js/modifyDom.js"></script>
+	<script src='js/network.js'></script>
+	<script>
+	<?php
+		if (isset($_SESSION['user_id'])) {
+			echo "getFriends();";
+		}
+	?>
+	</script>
+
 </body>
 </html>

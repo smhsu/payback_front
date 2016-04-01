@@ -40,3 +40,64 @@ function getFriends() {
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
 }
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+    }
+    return copy;
+}
+
+//$("#datepicker").datepicker();
+//$(function() {
+    var friendsAndUserToID = clone(friendToID);
+		friendsAndUserToID[username] = user_id;
+
+		var usernames = Object.keys(friendsAndUserToID);
+		var selectedUsersToID = [];
+
+		var dialog = $("#add-friend-modal");
+
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+      // don't navigate away from the field on tab when selecting an item
+    $( "#new_owers" ).bind( "keydown", function( event ) {
+      	if ( event.keyCode === $.ui.keyCode.TAB &&
+        	$( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      });
+    $( "#new_owers" ).autocomplete({
+        minLength: 0,
+				appendTo: "#add-expense-modal-body",
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            usernames, extractLast( request.term ) ) );
+						$(".ui-autocomplete").attr("z-index", "2000");
+        },
+				focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+			$( "#new_owers" ).attr('autocomplete', 'on');
+
+//});
