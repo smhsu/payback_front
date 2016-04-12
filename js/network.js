@@ -41,6 +41,24 @@ function getFriends() {
 	xmlHttp.send(dataString); // Send the data
 }
 
+function getExpenses() {
+	var dataString = "token=" + encodeURIComponent(token) + "&user_id=" + user_id;
+	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+	xmlHttp.open("POST", "get_expenses.php", true); // Starting a POST request
+	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xmlHttp.addEventListener("load", function(event){
+		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
+		if (jsonData.success) {
+			expenses = jsonData.expenses;
+			friendIdToExpenses = jsonData.friends;
+		} else {
+			alert("Error: " + jsonData.message);
+		}
+		this.removeEventListener("load", this);
+	}, false); // Bind the callback to the load event
+	xmlHttp.send(dataString); // Send the data
+}
+
 function clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
     var copy = obj.constructor();
