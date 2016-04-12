@@ -63,7 +63,7 @@
 
 	<div class='container'>
 		View expenses for...
-		<select>
+		<select id='friend-select'>
 			<option value='friend1'>Friend 1</option>
 			<option value='friend2'>Friend 2</option>
 		</select>
@@ -72,22 +72,26 @@
 		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new transaction</a>
 
 		<div class='table-responsive'>
-			<table class='table table-hover'>
+			<table class='table table-hover' id='expenses-table'>
 				<thead>
-					<th>Expense</th>
-					<th>Amount owed</th>
-					<th>Amount paid</th>
+					<tr>
+						<th>Expense</th>
+						<th>Amount owed</th>
+						<th>Amount paid</th>
+					</tr>
 				</thead>
-				<tr>
-					<th>Cats</th>
-					<th>Meow</th>
-					<th>0</th>
-				</tr>
-				<tr>
-					<th>More cats</th>
-					<th>Meeeeow</th>
-					<th>Only one meow</th>
-				</tr>
+				<tbody>
+					<tr>
+						<td>Cats</td>
+						<td>Meow</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>More cats</td>
+						<td>Meeeeow</td>
+						<td>Only one meow</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div> <!--End container-->

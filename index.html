@@ -9,6 +9,7 @@
 	<!-- Bootstrap -->
 	<link href='css/bootstrap.min.css' rel='stylesheet'>
 
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -16,45 +17,21 @@
 		<script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
 	<![endif]-->
 </head>
-
 <body>
-	<nav class='navbar navbar-default' role='navigation' id='nav'>
-		<div class='container-fluid' id='outer'>
-
-			<div class='navbar-header' id='navlogo'>
-				<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#nav-collapse'>
-					<span class='sr-only'>Toggle navigation</span>
-					<span class='icon-bar'></span>
-					<span class='icon-bar'></span>
-					<span class='icon-bar'></span>
-				</button>
-				<a class='navbar-brand' href='#'>Payback</a>
-			</div>
-
-			<div class='collapse navbar-collapse' id='nav-collapse'>
-				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#' class='active'>Home</a></li>
-					<li><a href='#'>About</a></li>
-				</ul>
-			</div>
-
-		</div> <!--End container-fluid-->
-	</nav>
-
 	<div id="add-friend-modal" class="modal fade" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 						<a class="close" data-dismiss="modal">×</a>
-						<h3>Add friend</h3>
+						<h3>Add friend (enter email):</h3>
 				</div>
 				<div class="modal-body">
 						<form>
-								<input type="text" class="input-xlarge"><br>
+								<input type="text" class="input-xlarge" name="email" id="friend_email"><br>
 						</form>
 				</div>
 				<div class="modal-footer">
-						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal">
+						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal" id="add_friend_btn">
 						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
@@ -68,9 +45,18 @@
 						<a class="close" data-dismiss="modal">×</a>
 						<h3>Add expense</h3>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" class="ui-widget" class="ui-front" id="add-expense-modal-body">
 						<form>
-								<input type="text" class="input-xlarge"><br>
+								<label for="new_expense_name">Expense: </label>
+								<input type="text" class="input-xlarge" id="new_expense_name" name="expense_name"><br>
+								<label for="new_buyer_name">Buyer: </label>
+								<input id="new_buyer_name" name="buyer_name" size="50"/></br>
+								<label for="new_total_amount">Amount: </label>
+								<input type="number" id="new_total_amount" name="total_amount"/></br>
+								<label for="datepicker">Date: </label>
+								<input type="text" id="datepicker"/></br>
+								<label for="new_owers">Owers: </label>
+								<input id="new_owers" name="ower_names" size="50"/></br>
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -88,33 +74,40 @@
 			<option value='friend2'>Friend 2</option>
 		</select>
 
-		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary">Add friend</a>
+		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
 		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new transaction</a>
 
 		<div class='table-responsive'>
-			<table class='table table-hover'>
+			<table class='table table-hover' id='expenses-table'>
 				<thead>
-					<th>Expense</th>
-					<th>Amount owed</th>
-					<th>Amount paid</th>
+					<tr>
+						<th>Expense</th>
+						<th>Amount owed</th>
+						<th>Amount paid</th>
+					</tr>
 				</thead>
-				<tr>
-					<th>Cats</th>
-					<th>Meow</th>
-					<th>0</th>
-				</tr>
-				<tr>
-					<th>More cats</th>
-					<th>Meeeeow</th>
-					<th>Only one meow</th>
-				</tr>
+				<tbody>
+					<tr>
+						<td>Cats</td>
+						<td>Meow</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>More cats</td>
+						<td>Meeeeow</td>
+						<td>Only one meow</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div> <!--End container-->
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src='js/bootstrap.min.js'></script>
+	<script src="js/modifyDom.js"></script>
+	<script src='js/network.js'></script>
+	<script src='js/globals.js'></script>
+
 </body>
 </html>
