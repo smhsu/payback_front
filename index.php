@@ -48,7 +48,7 @@
 								<label for="new_total_amount">Amount: </label>
 								<input type="number" id="new_total_amount" name="total_amount"/></br>
 								<label for="datepicker">Date: </label>
-								<input type="text" id="datepicker"/></br>
+								<input type="date" id="datepicker"/></br>
 								<label for="new_owers">Owers: </label>
 								<input id="new_owers" name="ower_names" size="50"/></br>
 						</form>
@@ -63,9 +63,7 @@
 
 	<div class='container'>
 		View expenses for...
-		<select>
-			<option value='friend1'>Friend 1</option>
-			<option value='friend2'>Friend 2</option>
+		<select id="friendsList">
 		</select>
 
 		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
