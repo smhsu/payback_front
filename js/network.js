@@ -70,7 +70,7 @@ function clone(obj) {
 
 //$("#datepicker").datepicker();
 //$(function() {
-    var friendsAndUserToID = clone(friendToID);
+    var friendsAndUserToID = clone(friendToId);
 		friendsAndUserToID[username] = user_id;
 
 		var usernames = Object.keys(friendsAndUserToID);

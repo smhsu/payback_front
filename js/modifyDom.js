@@ -1,13 +1,11 @@
-var user_id = 1;
-
 function friendSelectChanged() {
 	var friendId = friendsToId[$('#friend-select').val()];
 	var newTbody = popuateExpensesTable(friendId);
+	$('#expenses-table tbody').remove();
 	$('#expenses-table').append(newTbody);
 }
 
 function constructExpenseTableBody(friendId) {
-	$('#expenses-table tbody').remove();
 	var newTbody = $('<tbody></tbody>');
 
 	var allInvolvedExpenseIds = friendIdToExpenses[friendId];
