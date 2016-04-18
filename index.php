@@ -54,7 +54,7 @@
 						</form>
 				</div>
 				<div class="modal-footer">
-						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal">
+						<input class="btn btn-success" id="add_btn" type="submit" value="Add!" data-dismiss="modal">
 						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
