@@ -31,7 +31,12 @@ function getFriends() {
 			// FIXME Populate friend dropdown with reponses
 			for (i = 0; i < jsonData.count; i++) {
 				console.log("Friend: " + jsonData[i].friend_username);
+
+				var opt = new Option(jsonData[i].friend_username, i);
+				$(opt).html(jsonData[i].friend_username);
+				$("#friendsList").append(opt);
 			}
+
 
 		} else {
 			alert("Error: " + jsonData.message);
@@ -74,7 +79,10 @@ function clone(obj) {
 		friendsAndUserToID[username] = user_id;
 
 		var usernames = Object.keys(friendsAndUserToID);
-		var selectedUsersToID = [];
+		var availableUsernamesOwers = usernames;
+		var availableUsernamesBuyers = usernames;
+		var selectedOwers = [];
+		var selectedBuyers = [];
 
 		var dialog = $("#add-friend-modal");
 
@@ -85,19 +93,23 @@ function clone(obj) {
       return split( term ).pop();
     }
       // don't navigate away from the field on tab when selecting an item
-    $( "#new_owers" ).bind( "keydown", function( event ) {
+    $( '#new_owers, #new_buyer_name' ).bind( "keydown", function( event ) {
       	if ( event.keyCode === $.ui.keyCode.TAB &&
         	$( this ).autocomplete( "instance" ).menu.active ) {
           event.preventDefault();
         }
       });
-    $( "#new_owers" ).autocomplete({
+    $( '#new_owers, #new_buyer_name' ).autocomplete({
         minLength: 0,
 				appendTo: "#add-expense-modal-body",
         source: function( request, response ) {
           // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            usernames, extractLast( request.term ) ) );
+          response(
+						$.ui.autocomplete.filter(
+            usernames, extractLast( request.term )
+					 )
+
+					);
 						$(".ui-autocomplete").attr("z-index", "2000");
         },
 				focus: function() {
@@ -108,14 +120,16 @@ function clone(obj) {
           var terms = split( this.value );
           // remove the current input
           terms.pop();
+					console.log(this.value);
           // add the selected item
           terms.push( ui.item.value );
+					console.log(ui.item.value);
           // add placeholder to get the comma-and-space at the end
           terms.push( "" );
           this.value = terms.join( ", " );
           return false;
         }
       });
-			$( "#new_owers" ).attr('autocomplete', 'on');
+			$( '#new_owers, #new_buyer_name' ).attr('autocomplete', 'on');
 
 //});
