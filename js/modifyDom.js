@@ -1,6 +1,6 @@
 function friendSelectChanged() {
-	var friendId = friendsToId[$('#friend-select').val()];
-	var newTbody = popuateExpensesTable(friendId);
+	var friendId = $('#friendsList').val();
+	var newTbody = constructExpenseTableBody(friendId);
 	$('#expenses-table tbody').remove();
 	$('#expenses-table').append(newTbody);
 }

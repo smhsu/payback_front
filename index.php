@@ -63,7 +63,7 @@
 
 	<div class='container'>
 		View expenses for...
-		<select id="friendsList">
+		<select id="friendsList" onchange="friendSelectChanged()">
 		</select>
 
 		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
@@ -78,18 +78,6 @@
 						<th>Amount paid</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>Cats</td>
-						<td>Meow</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>More cats</td>
-						<td>Meeeeow</td>
-						<td>Only one meow</td>
-					</tr>
-				</tbody>
 			</table>
 		</div>
 	</div> <!--End container-->

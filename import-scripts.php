@@ -22,6 +22,7 @@
 <?php
 	if (isset($_SESSION['user_id'])) {
 		echo "getFriends();";
+		echo "getExpenses();";
 	}
 ?>
 </script>

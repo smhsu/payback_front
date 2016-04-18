@@ -9,7 +9,7 @@ function addFriendAjax() {
 	xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
 		if (jsonData.success) {
-			alert("Friend added!");
+			alert("Friend successfully added!");
 			getFriends();
 		} else {
 			alert("Friend not added. " + jsonData.message);
@@ -28,16 +28,15 @@ function getFriends() {
 	xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
 		if (jsonData.success) {
-			// FIXME Populate friend dropdown with reponses
 			for (i = 0; i < jsonData.count; i++) {
-				console.log("Friend: " + jsonData[i].friend_username);
+				var username = jsonData[i].friend_username;
+				var id = jsonData[i].friend_id;
 
-				var opt = new Option(jsonData[i].friend_username, i);
-				$(opt).html(jsonData[i].friend_username);
+				friendToId[username] = Number(id);
+				var opt = new Option(username, id);
+				$(opt).html(username);
 				$("#friendsList").append(opt);
 			}
-
-
 		} else {
 			alert("Error: " + jsonData.message);
 		}
@@ -56,6 +55,7 @@ function getExpenses() {
 		if (jsonData.success) {
 			expenses = jsonData.expenses;
 			friendIdToExpenses = jsonData.friends;
+			friendSelectChanged(); // FIXME find a better place for this
 		} else {
 			alert("Error: " + jsonData.message);
 		}
