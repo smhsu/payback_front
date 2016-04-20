@@ -19,6 +19,31 @@ function addFriendAjax() {
 	xmlHttp.send(dataString); // Send the data
 }
 
+document.getElementById("add_transaction_btn").addEventListener("click", addTransactionAjax, false);
+function addTransactionAjax() {
+	var amountPaid = document.getElementById("amount_paid").value;
+	var payeeId = $('#friendsList').val();
+	// var user_id and token are global
+	
+	var dataString = "token=" + encodeURIComponent(token) + "&user_id="  + encodeURIComponent(user_id)
+		+ "&payee_id" + encodeURIComponent(payeeId) + "&amount_paid=" + encodeURIComponent(amountPaid);
+	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+	xmlHttp.open("POST", "add_transaction.php", true); // Starting a POST request
+	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlHttp.addEventListener("load", function(event){
+		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
+		if (jsonData.success) {
+			alert("Transaction successfully added!");
+			getExpenses();
+		} else {
+			alert("Transaction not added.");
+		}
+		this.removeEventListener("load", this);
+	}, false); // Bind the callback to the load event
+	xmlHttp.send(dataString); // Send the data
+}
+
+
 // GET FRIENDS (populates dropdown)
 function getFriends() {
 	var dataString = "token=" + encodeURIComponent(token);

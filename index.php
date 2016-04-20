@@ -54,6 +54,27 @@
 						</form>
 				</div>
 				<div class="modal-footer">
+						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal" id="add_transaction_btn">
+						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="add-transaction-modal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<a class="close" data-dismiss="modal">×</a>
+						<h3>Add transaction</h3>
+				</div>
+				<div class="modal-body" class="ui-widget" class="ui-front" id="add-expense-modal-body">
+						<form>
+								<label for="amount_paid">Amount: </label>
+								<input type="number" id="amount_paid" name="total_amount"/></br>
+						</form>
+				</div>
+				<div class="modal-footer">
 						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal">
 						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 				</div>
@@ -67,7 +88,8 @@
 		</select>
 
 		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
-		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new transaction</a>
+		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new expense</a>
+		<a data-toggle="modal" href="#add-transaction-modal" class="btn btn-primary">Add new transaction</a>
 
 		<div class='table-responsive'>
 			<table class='table table-hover' id='expenses-table'>
