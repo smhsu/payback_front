@@ -204,7 +204,13 @@ $(function(){
 				xmlHttp.addEventListener("load", function(event){
 				var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
 				if (jsonData.success) {
-					console.log("json sent!");
+					/*
+					var expenseId = jsonData.expense_id;
+					delete jsonData.success;
+					expenses[expense_id] = jsonData;
+					*/
+					getExpenses()
+					friendSelectChanged()
 				} else {
 					alert("Error: " + jsonData.message);
 				}
