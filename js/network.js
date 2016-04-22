@@ -26,7 +26,7 @@ function addTransactionAjax() {
 	// var user_id and token are global
 	
 	var dataString = "token=" + encodeURIComponent(token) + "&user_id="  + encodeURIComponent(user_id)
-		+ "&payee_id" + encodeURIComponent(payeeId) + "&amount_paid=" + encodeURIComponent(amountPaid);
+		+ "&payee_id=" + encodeURIComponent(payeeId) + "&amount_paid=" + encodeURIComponent(amountPaid);
 	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "add_transaction.php", true); // Starting a POST request
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -35,6 +35,7 @@ function addTransactionAjax() {
 		if (jsonData.success) {
 			alert("Transaction successfully added!");
 			getExpenses();
+			friendSelectChanged();
 		} else {
 			alert("Transaction not added.");
 		}
