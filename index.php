@@ -46,7 +46,7 @@
 								<label for="new_buyer_name">Buyer: </label>
 								<input id="new_buyer_name" name="buyer_name" size="50"/></br>
 								<label for="new_total_amount">Amount: </label>
-								<input type="number" id="new_total_amount" name="total_amount"/></br>
+								<input type="number" id="new_total_amount" name="total_amount" min="0"/></br>
 								<label for="datepicker">Date: </label>
 								<input type="date" id="datepicker"/></br>
 								<label for="new_owers">Owers: </label>
