@@ -24,7 +24,7 @@ function addTransactionAjax() {
 	var amountPaid = document.getElementById("amount_paid").value;
 	var payeeId = $('#friendsList').val();
 	// var user_id and token are global
-	
+
 	var dataString = "token=" + encodeURIComponent(token) + "&user_id="  + encodeURIComponent(user_id)
 		+ "&payee_id=" + encodeURIComponent(payeeId) + "&amount_paid=" + encodeURIComponent(amountPaid);
 	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
@@ -55,6 +55,7 @@ function getFriends() {
 		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
 		if (jsonData.success) {
 			for (i = 0; i < jsonData.count; i++) {
+				$('#friendsList option').remove();
 				var friend_username = jsonData[i].friend_username;
 				var id = jsonData[i].friend_id;
 				friendToId[friend_username] = Number(id);
@@ -103,7 +104,7 @@ function clone(obj) {
 function setupAutocomplete(){
 
 			var usernames = Object.keys(friendToId);
-
+			usernames.push(username);
 			var dialog = $("#add-friend-modal");
 
 	    function split( val ) {
@@ -211,7 +212,7 @@ $(function(){
 		var arrOwersLength = arrOwers.length;
 		for(var i = 0; i < arrOwersLength; i++){
 			if(arrOwers[i]){
-				jsonOwersArray.push(friendToId[arrOwers[i]]);	
+				jsonOwersArray.push(friendToId[arrOwers[i]]);
 			}
 		}
 
@@ -245,4 +246,3 @@ $(function(){
 			xmlHttp.send(JSON.stringify(addExpenseData)); // Send the data
     });
 });
-
