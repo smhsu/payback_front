@@ -1,12 +1,29 @@
 function friendSelectChanged() {
 	var friendId = $('#friendsList').val();
-	var newTbody = constructExpenseTableBody(friendId);
+	var tuple = constructExpenseTableBody(friendId);
+	var totalOwed = tuple[0];
+	var newTbody = tuple[1];
 	$('#expenses-table tbody').remove();
 	$('#expenses-table').append(newTbody);
+
+	var name = $('#friendsList option:selected').text();
+	$('.total-owed-box').removeClass('alert-success alert-danger')
+	if (totalOwed <= 0) {
+		$('.total-owed-box').addClass('alert-success');
+		$('.total-owed-box').text(name + " owes you $" + (-1*totalOwed));
+	} else {
+		$('.total-owed-box').addClass('alert-danger');
+		$('.total-owed-box').text("You owe " + name + " $" + totalOwed);
+	}
 }
 
+/*
+ * Returns [balance, tableBody]
+ * FIXME: separate these two returns into separate functions
+ */
 function constructExpenseTableBody(friendId) {
 	var newTbody = $('<tbody></tbody>');
+	var totalOwed = 0;
 
 	var allInvolvedExpenseIds = friendIdToExpenses[friendId];
 	for (i in allInvolvedExpenseIds) {
@@ -34,6 +51,11 @@ function constructExpenseTableBody(friendId) {
 				amountPaid = ower.paid;
 			}
 		}
+		if (userOwes) {
+			totalOwed += amountOwed;
+		} else {
+			totalOwed -= amountOwed;
+		}
 
 		var newRow = $('<tr></tr>');
 		newRow.append($('<td>' + expense.expense_name + '</td>'));
@@ -46,5 +68,5 @@ function constructExpenseTableBody(friendId) {
 		newTbody.append(newRow);
 	}
 
-	return newTbody;
+	return [totalOwed, newTbody];
 }
