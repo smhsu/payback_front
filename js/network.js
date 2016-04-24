@@ -245,8 +245,8 @@ $(function(){
 				this.removeEventListener("load", this);
 			}, false); // Bind the callback to the load event
 			xmlHttp.send(JSON.stringify(addExpenseData)); // Send the data
-    });
 	clearAddExpenseForm();
+    });
 });
 
 function clearAddTransactionForm() {
