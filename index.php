@@ -26,7 +26,7 @@
 				</div>
 				<div class="modal-footer">
 						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal" id="add_friend_btn">
-						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+						<a href="#" class="btn" id="cancel_friendship" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="modal-footer">
 						<input class="btn btn-success" id="add_btn" type="submit" value="Add!" data-dismiss="modal">
-						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+						<a href="#" class="btn" id="cancel_expense" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 				</div>
 				<div class="modal-footer">
 						<input class="btn btn-success" type="submit" value="Add!" data-dismiss="modal" id="add_transaction_btn">
-						<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+						<a href="#" class="btn" id="cancel_transaction" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
 		</div>

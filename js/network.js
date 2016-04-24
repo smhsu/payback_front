@@ -17,6 +17,7 @@ function addFriendAjax() {
 		this.removeEventListener("load", this);
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
+	clearAddFriendForm();
 }
 
 document.getElementById("add_transaction_btn").addEventListener("click", addTransactionAjax, false);
@@ -42,6 +43,7 @@ function addTransactionAjax() {
 		this.removeEventListener("load", this);
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
+	clearAddTransactionForm();
 }
 
 
@@ -244,5 +246,27 @@ $(function(){
 			}, false); // Bind the callback to the load event
 			xmlHttp.send(JSON.stringify(addExpenseData)); // Send the data
     });
+	clearAddExpenseForm();
 });
+
+function clearAddTransactionForm() {
+    document.getElementById("amount_paid").value = "";
+}
+
+function clearAddExpenseForm() {
+    document.getElementById("new_expense_name").value = "";
+	document.getElementById("new_buyer_name").value = "";
+	document.getElementById("new_total_amount").value = "";
+	document.getElementById("datepicker").value = "mm/dd/yyyy";
+	document.getElementById("new_owers").value = "";
+}
+
+function clearAddFriendForm() {
+    document.getElementById("friend_email").value = "";
+}
+
+document.getElementById("cancel_expense").addEventListener("click", clearAddExpenseForm, false);
+document.getElementById("cancel_transaction").addEventListener("click", clearAddTransactionForm, false);
+document.getElementById("cancel_friendship").addEventListener("click", clearAddFriendForm, false);
+
 
