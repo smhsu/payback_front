@@ -91,6 +91,8 @@
 		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new expense</a>
 		<a data-toggle="modal" href="#add-transaction-modal" class="btn btn-primary">Add new transaction</a>
 
+		<p class="alert-danger total-owed-box">You owe this person a total of 5 cats.</p>
+
 		<div class='table-responsive'>
 			<table class='table table-hover' id='expenses-table'>
 				<thead>

@@ -8,8 +8,8 @@
 
 	<!-- Bootstrap -->
 	<link href='css/bootstrap.min.css' rel='stylesheet'>
-
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link href='css/custom.css' rel='stylesheet'>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -69,13 +69,14 @@
 
 	<div class='container'>
 		View expenses for...
-		<select>
+		<select id="friendsList">
 			<option value='friend1'>Friend 1</option>
 			<option value='friend2'>Friend 2</option>
 		</select>
 
 		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
 		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new transaction</a>
+		<p class="alert-success total-owed-box">You owe this person a total of 5 cats.</p>
 
 		<div class='table-responsive'>
 			<table class='table table-hover' id='expenses-table'>
@@ -103,6 +104,7 @@
 	</div> <!--End container-->
 
 	<script src='js/globals.js'></script>
+	<script src='js-tests/src/toyData.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src='js/bootstrap.min.js'></script>
