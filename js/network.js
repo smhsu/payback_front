@@ -54,8 +54,8 @@ function getFriends() {
 	xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // Parse the JSON into a JavaScript object
 		if (jsonData.success) {
+			$('#friendsList option').remove();
 			for (i = 0; i < jsonData.count; i++) {
-				$('#friendsList option').remove();
 				var friend_username = jsonData[i].friend_username;
 				var id = jsonData[i].friend_id;
 				friendToId[friend_username] = Number(id);

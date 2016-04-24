@@ -22,7 +22,6 @@
 						echo "<li><a href='register.php'>Register</a></li>";
 					}
 				?>
-				<li><a href='#'>About</a></li>
 			</ul>
 		</div>
 
