@@ -17,11 +17,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 						<a class="close" data-dismiss="modal">×</a>
-						<h3>Add friend (enter email):</h3>
+						<h3>Add friend</h3>
 				</div>
 				<div class="modal-body">
 						<form>
-								<input type="text" class="input-xlarge" name="email" id="friend_email"><br>
+								<input type="text" class="input-xlarge" name="email" id="friend_email" placeholder="email"><br>
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -41,16 +41,18 @@
 				</div>
 				<div class="modal-body" class="ui-widget" class="ui-front" id="add-expense-modal-body">
 						<form>
-								<label for="new_expense_name">Expense: </label>
+								<label for="new_expense_name">Expense name: </label>
 								<input type="text" class="input-xlarge" id="new_expense_name" name="expense_name"><br>
 								<label for="new_buyer_name">Buyer: </label>
-								<input id="new_buyer_name" name="buyer_name" size="50"/></br>
+								<input id="new_buyer_name" name="buyer_name" size="50" placeholder="Enter one name"/></br>
 								<label for="new_total_amount">Amount: </label>
 								<input type="number" id="new_total_amount" name="total_amount" min="0"/></br>
+								<i>This amount will be split equally between all owers and you.</i><br>
+								<label for="new_owers">Owers: </label>
+								<input id="new_owers" name="ower_names" size="50" placeholder="Enter one or more names"/></br>
 								<label for="datepicker">Date: </label>
 								<input type="date" id="datepicker"/></br>
-								<label for="new_owers">Owers: </label>
-								<input id="new_owers" name="ower_names" size="50"/></br>
+
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -66,12 +68,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 						<a class="close" data-dismiss="modal">×</a>
-						<h3>Add transaction</h3>
+						<h3>Pay off expenses</h3>
 				</div>
 				<div class="modal-body" class="ui-widget" class="ui-front" id="add-expense-modal-body">
 						<form>
 								<label for="amount_paid">Amount: </label>
 								<input type="number" id="amount_paid" name="total_amount"/></br>
+								<i>This amount will automatically go towards paying off the oldest expense.</i>
+
 						</form>
 				</div>
 				<div class="modal-footer">
@@ -88,8 +92,8 @@
 		</select>
 
 		<a data-toggle="modal" href="#add-friend-modal" class="btn btn-primary" id="add-friend-modal">Add friend</a>
-		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Add new expense</a>
-		<a data-toggle="modal" href="#add-transaction-modal" class="btn btn-primary">Add new transaction</a>
+		<a data-toggle="modal" href="#add-expense-modal" class="btn btn-primary">Split a new expense</a>
+		<a data-toggle="modal" href="#add-transaction-modal" class="btn btn-primary">Pay off expenses</a>
 
 		<p class="alert-danger total-owed-box">You owe this person a total of 5 cats.</p>
 
