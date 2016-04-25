@@ -5,7 +5,7 @@ var expenses = {
 		expense_id: 1,
 		expense_name: "Food",
 		buyer_id: 1,
-		total: 30.0,
+		total_amount: 30.0,
 		date_added: "4/8/16",
 		owers:[
 			{ ower_id: 2, owed: 15.0, paid: 0.0 },
@@ -16,7 +16,7 @@ var expenses = {
 		expense_id: 2,
 		expense_name: "Rent",
 		buyer_id: 2,
-		total: 500.0,
+		total_amount: 500.0,
 		date_added: "4/8/16",
 		owers:[
 			{ ower_id: 3, owed: 200.0, paid: 0.0 },

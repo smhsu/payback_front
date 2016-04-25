@@ -15,6 +15,12 @@ function friendSelectChanged() {
 		$('.total-owed-box').addClass('alert-danger');
 		$('.total-owed-box').text("You owe " + name + "$" + totalOwed);
 	}
+
+	$(".expand").click(function() {
+
+			$(this).next().toggle();
+
+	});
 }
 
 /*
@@ -57,7 +63,8 @@ function constructExpenseTableBody(friendId) {
 			totalOwed -= amountOwed;
 		}
 
-		var newRow = $('<tr></tr>');
+		var newRow = $('<tr class="expand"></tr>');
+		var detailRow = $('<tr></tr>');
 		newRow.append($('<td>' + expense.expense_name + '</td>'));
 		if (userOwes) {
 			newRow.append($('<td class="danger">You owe $' + amountOwed + '</td>'));
@@ -65,8 +72,17 @@ function constructExpenseTableBody(friendId) {
 			newRow.append($('<td class="success">They owe $' + amountOwed + '</td>'));
 		}
 		newRow.append($('<td>$' + amountPaid + '</td>'));
+		detailRow.append($('<td>Total: ' + expense.total_amount + '</td>'));
+		detailRow.append($('<td>Date Added: ' + expense.date_added + '</td>'));
 		newTbody.append(newRow);
+		newTbody.append(detailRow);
 	}
 
 	return [totalOwed, newTbody];
 }
+
+$(".expand").click(function() {
+
+		$(this).next().toggle();
+
+});
